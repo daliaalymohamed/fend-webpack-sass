@@ -9,13 +9,13 @@ function handleSubmit(event) {
     let catFactsList = []
     let factsList = ""
     console.log("::: Form Submitted :::")
-    fetch('https://cat-fact.herokuapp.com/facts')
+    fetch('https://catfact.ninja/breeds?limit=1')
     .then(res => {
         return res.json()
     })
     .then(function(data) {
-        data.map(fact => {
-            catFactsList.push(fact.text)
+        data.data.map(fact => {
+            catFactsList.push(fact.breed)
         })
         for (var i = 0, fact; fact = catFactsList[i]; i++) {
             factsList += "<li>" + fact + "</li>";
