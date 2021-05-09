@@ -6,13 +6,21 @@ function handleSubmit(event) {
 
     Client.checkForName(formText)
 
+    let catFactsList = []
+    let factsList = ""
     console.log("::: Form Submitted :::")
-    fetch('http://localhost:8081/test')
+    fetch('https://cat-fact.herokuapp.com/facts')
     .then(res => {
         return res.json()
     })
     .then(function(data) {
-        document.getElementById('results').innerHTML = data.message
+        data.map(fact => {
+            catFactsList.push(fact.text)
+        })
+        for (var i = 0, fact; fact = catFactsList[i]; i++) {
+            factsList += "<li>" + fact + "</li>";
+          }
+        document.getElementById('results').innerHTML = factsList;
     })
 }
 
